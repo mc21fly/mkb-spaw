@@ -1,16 +1,19 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { Article, Box } from '../components';
-import { Displayment } from '../assets/functions';
 
-import welder from '../assets/img/welder1.png';
-import welder2 from '../assets/img/welder2.png';
+import { HomeStyles as Styles } from './styles';
+
+import { Welder1, Welder2 } from '../assets/img';
 
 export default function Home() {
 
+    //eslint-disable-next-line
+    const [styles, setStyles] = Styles()
+
     return (
-        <Container fluid style={{padding: Displayment('10px 0px 10px 0px', 0)}}>
-            <Article right image={welder} title="Kim jesteśmy?">
+        <Container fluid style={styles.root}>
+            <Article right image={Welder1} title="Kim jesteśmy?">
                 Nasza firma zajmuje się spawaniem konstrukcji stalowych.
                 Świadczymy kompleksowe usługi ślusarsko-spawalnicze.
                 Spawamy metodami <b>MAG</b> oraz <b>TIG</b>. Jesteśmy otwarci na zlecenia według projektów klienta lub oferujemy pomoc przy ich tworzeniu.
@@ -26,7 +29,7 @@ export default function Home() {
                 </Row>
             </Article>
 
-            <Article image={welder2} title="Co nas wyróżnia?">
+            <Article image={Welder2} title="Co nas wyróżnia?">
                 Posiadamy doświadczenie w branży spożywczej oraz farmaceutycznej, nabyte podczas pracy m.in. w browarach, u producentów soków czy też leków. Zarówno w Polsce jak i na terenie Europy. 
             </Article>
         </Container>

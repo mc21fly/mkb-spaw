@@ -1,38 +1,33 @@
-// IMPORT REACT COMPONENTS
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap'; // IMPORT REACT COMPONENTS
 
-// IMPORT APP COMPONENTS
-import { Menu, HamburgerMenu, Footer } from './components';
+import { Menu, HamburgerMenu, Footer } from './components'; // IMPORT APP COMPONENTS
+import { Home, Projects, Contact } from './pages'; // IMPORT APP PAGES
+import { Displayment } from './assets/functions'; // IMPORT APP FUNCTIONS
 
-// IMPORT APP PAGES
-import { Home, Projects, Contact } from './pages';
+import { AppStyles as Styles } from './pages/styles'; // IMPORT COMPONENT STYLE
 
-// IMPORT APP FUNCTIONS
-import { Displayment } from './assets/functions'
-
-// IMPORT CSS FILES
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './assets/styles/style.scss';
+import './assets/styles/style.scss'; // IMPORT CSS FILES
 
-// IMPORT IMAGE SOURCE
-import logo from './assets/img/logo.png';
+import { Logo } from './assets/img';
 
+export default function App() {
 
-function App() {
+  const [styles] = Styles();
 
   return (
     <Router>
-      <Container fluid={true} style={{padding: Displayment('10px 0px 10px 0px', 30), borderBottom: '1px solid #ececec', marginBottom: 20}}>
+      <Container fluid style={styles.root}>
         <Container>
           <Row>
             <Col>
-              <img src={logo} alt='Logo' style={{maxHeight: Displayment(40, 50)}} />
+              <img src={Logo} alt='Logo' style={styles.logo} />
             </Col>
-            <Col style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
-              {Displayment(<HamburgerMenu />, <Menu />)}
+            <Col style={styles.menu}>
+              {Displayment(<HamburgerMenu />, <Menu />, 1024)}
             </Col>
           </Row>
         </Container>
@@ -46,5 +41,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;

@@ -1,26 +1,13 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { Displayment } from '../assets/functions'
+import { FooterStyles as Styles } from './styles';
 
 const currentYear = new Date().getFullYear();
 
-const styles = {
-    root: {
-        background: 'white',
-        borderTop: '1px solid #ececec',
-        padding: Displayment(20, 30),
-        marginTop: 20
-    },
-    description: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '0.8rem'
-    }
-}
+export default function Footer() {
 
-function Footer() {
+    const [styles] = Styles()
+
     return (
         <Container fluid style={styles.root}>
             <Container style={styles.description}>
@@ -30,5 +17,3 @@ function Footer() {
         </Container>
     )
 }
-
-export default Footer;

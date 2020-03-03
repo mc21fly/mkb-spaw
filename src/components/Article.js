@@ -1,82 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Displayment } from '../assets/functions';
+import { Alignment } from '../assets/functions';
+import { ArticleStyles as Styles} from './styles';
 
-function Article(props) {
+export default function Article(props) {
 
-    const [styles, setStyles] = useState({
-        root: {
-            background: '#ffffff',
-            transition: 'background 1s',
-            padding: '30px 0px'
-        },
-        article: {
-            transform: 'translateY(100%)',
-            opacity: 0,
-            display: 'flex',
-            flexDirection: alignment('row-reverse', 'row'),
-            transition: 'transform 1s, opacity 1s'
-        },
-        section: {
-            display: 'flex',
-            flexDirection: 'column',
-                header: {
-                    flexGrow: 0,
-                    fontWeight: '700',
-                    fontSize: '2.5rem',
-                    display: 'flex',
-                    marginBottom: '10px',
-                    justifyContent: alignment('flex-start', 'flex-end', 'center')
-                },
-                description: {
-                    textAlign: 'justify',
-                    fontSize: '1.1rem',
-                    width: '100%'
-                },
-        },
-        image: {
-            display: Displayment('none', 'flex'),
-            paddingRight: alignment(15, 0),
-            paddingLeft: alignment(0, 15),
-            marginLeft: alignment(0, 10),
-            marginRight: alignment(10, 0),
-            maxHeight: 350,
-            maxWidth: 300,
-        }
-    });
+    const alignment = Alignment(props);
+
+    const [styles, setStyles] = Styles(props);
 
     useEffect(() => {
         setStyles({
+            ...styles,
             root: {
                 ...styles.root,
-                background: props.dark ? '#ececec' : "#ffffff",
+                background: props.dark ? '#ececec' : '#ffffff',
             },
             article: {
                 ...styles.article,
                 opacity: '1',
-                transform: 'translateY(0%)'
-            },
-            section: {...styles.section},
-            image: {...styles.image}
-        })
+                transform: 'translateY(0%)'}
+        });
         //eslint-disable-next-line
     }, [])
-
-// CHECK FOR ALIGNMENT
-function alignment(left, right, center) {
-    return props.right
-                ? right
-                : props.center
-                    ? center
-                    : left
-}
 
 function Header() {
     return (
         <Col style={styles.section.header}>
             {props.title}
         </Col>
-    )
+    );
 }
 
 function Description() {
@@ -84,7 +37,7 @@ function Description() {
         <Col style={styles.section.description}>
             {props.children}
         </Col>
-    )
+    );
 }
 
 function Image() {
@@ -92,7 +45,7 @@ function Image() {
         <Col style={styles.image}>
             <img style={{objectFit: 'cover'}} src={props.image} alt={props.image} />
         </Col>
-    )
+    );
 }
 
     return (
@@ -107,5 +60,3 @@ function Image() {
         </Container>
     );
 }
-
-export default Article;

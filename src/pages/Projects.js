@@ -1,45 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Image, Col } from 'react-bootstrap';
+import { Container, Image, Col, Modal } from 'react-bootstrap';
+
+import { ProjectsStyles as Styles } from './styles';
 
 export default function Projects() {
 
-    const [styles, setStyles] = useState({
-        root: {
-            padding: 0
-        },
-        header: {
-            fontWeight: '700',
-            fontSize: '2.5rem',
-            opacity: 0,
-            transform: 'translateY(100%)',
-            transition: 'transform 1s, opacity 1s'
-        },
-        gallery: {
-            padding: 0,
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            opacity: 0,
-            transform: 'translateY(100%)',
-            transition: 'transform 1s, opacity 1s'
-        },
-        image: {
-            flexBasis: '24%',
-            margin: '10px 0px',
-            maxHeight: 250,
-            objectFit: 'cover'
-        }
-    })
-
-    //eslint-disable-next-line
+    const [styles, setStyles] = Styles();
     const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
         setStyles({
-            root: {
-                ...styles.root
-            },
+            ...styles,
             header: {
                 ...styles.header,
                 opacity: 1,
@@ -49,24 +20,33 @@ export default function Projects() {
                 ...styles.gallery,
                 opacity: 1,
                 transform: 'translateY(0%)'
-            },
-            image: {
-                ...styles.image,
             }
-        })
+        });
         //eslint-disable-next-line
     }, [])
 
     useEffect(() => {
         fetch('https://www.mkb-spaw.pl/api/index.php')
             .then(resp => resp.json())
-            .then(res => setPhotos(res.photos))
-    }, [])
+            .then(res => setPhotos(res.photos));
+    }, []);
 
     function MyImage(props) {
+        
+        const [show, setShow] = useState(false);
+        
+        const handleClose = () => setShow(false);
+        const handleShow = () => setShow(true);
+
         return (
-            <Image style={styles.image} src={`https://mkb-spaw.pl/img/${props.source}`} thumbnail/>
-        )
+        <>
+            <Image style={styles.image} onClick={handleShow} src={`https://mkb-spaw.pl/img/${props.source}`} thumbnail/>
+            
+            <Modal size="lg" centered show={show} onHide={handleClose}>
+                <img style={{height: 'auto', maxWidth: '100%'}} src={`https://mkb-spaw.pl/img/${props.source}`} alt={`${props.source}`} />
+            </Modal>
+        </>
+        );
     }
 
     return (
@@ -80,5 +60,5 @@ export default function Projects() {
                     </Container>
             </Container>
         </Container>
-    )
+    );
 }

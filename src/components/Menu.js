@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
 
-function Menu() {
+export default function Menu() {
 
     const buttons = {
         home: useRef(),
@@ -20,5 +20,3 @@ function Menu() {
         </Row>
     )
 }
-
-export default Menu;

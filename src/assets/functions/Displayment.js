@@ -1,5 +1,5 @@
-function Displayment(lessOrEqual, more) {
-return window.innerWidth <= 768 ? lessOrEqual : more;
+export default function Displayment(lessOrEqual, more, width) {
+    return window.innerWidth <= (width ? width : 768)
+            ? lessOrEqual
+            : more;
 }
-
-export default Displayment;
