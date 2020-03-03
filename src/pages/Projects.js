@@ -55,7 +55,16 @@ export default function Projects() {
                 <p style={styles.header}>Nasze projekty</p>
                     <Container style={styles.root}>
                         <Col style={styles.gallery}>
-                            {photos.map((photo, index) => <MyImage key={index} source={photo.url} />)}
+                            {photos.map((photo, index) => { 
+                                const fileExtensionPattern = /\.([0-9a-z]+)(?=[?#])|(\.)(?:[\w]+)$/gmi;
+
+                                    if (photo.url.match(fileExtensionPattern)) {
+                                        return <MyImage key={index} source={photo.url} />;
+                                    } else {
+                                        return null;
+                                    }
+                                })
+                            }
                         </Col>
                     </Container>
             </Container>
