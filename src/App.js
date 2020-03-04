@@ -15,7 +15,6 @@ import './assets/styles/style.scss'; // IMPORT CSS FILES
 import { Logo } from './assets/img';
 
 export default function App() {
-
   const [styles] = Styles();
 
   return (
@@ -33,10 +32,10 @@ export default function App() {
         </Container>
       </Container>
 
-      <Route path="/" exact component={Home} />
-      <Route path="/projects" component={Projects} />
-      <Route path="/contact" component={Contact} />
-      
+      <Route path='/' exact component={Home} />
+      <Route path='/projects' component={Projects} />
+      <Route path='/contact' component={Contact} />
+
       <Footer />
     </Router>
   );
