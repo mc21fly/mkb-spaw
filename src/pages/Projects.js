@@ -3,6 +3,8 @@ import { Container, Image, Col, Modal } from 'react-bootstrap';
 
 import { ProjectsStyles as Styles } from './styles';
 
+const __URL = 'http://localhost:9999';
+
 export default function Projects() {
   const [styles, setStyles] = Styles();
   const [photos, setPhotos] = useState([]);
@@ -25,7 +27,7 @@ export default function Projects() {
   }, []);
 
   useEffect(() => {
-    fetch('https://www.mkb-spaw.pl/api/index.php')
+    fetch(`${__URL}/api/index.php`)
       .then(resp => resp.json())
       .then(res => setPhotos(res.photos));
   }, []);
@@ -41,14 +43,14 @@ export default function Projects() {
         <Image
           style={styles.image}
           onClick={handleShow}
-          src={`https://mkb-spaw.pl/img/${props.source}`}
+          src={`${__URL}/img/${props.source}`}
           thumbnail
         />
 
         <Modal size='lg' centered show={show} onHide={handleClose}>
           <img
-            style={{ height: 'auto', maxWidth: '100%' }}
-            src={`https://mkb-spaw.pl/img/${props.source}`}
+            style={{ maxWidth: '100%', height: 'auto' }}
+            src={`${__URL}/img/${props.source}`}
             alt={`${props.source}`}
           />
         </Modal>

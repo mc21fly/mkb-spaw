@@ -8,10 +8,6 @@ import { Displayment } from './assets/functions'; // IMPORT APP FUNCTIONS
 
 import { AppStyles as Styles } from './pages/styles'; // IMPORT COMPONENT STYLE
 
-import '@fortawesome/fontawesome-free/css/all.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './assets/styles/style.scss'; // IMPORT CSS FILES
-
 import { Logo } from './assets/img';
 
 export default function App() {

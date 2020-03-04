@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Container, Col, Row, Form, Button, Modal } from 'react-bootstrap';
+import { Container, Col, Row, Form, Button } from 'react-bootstrap';
 import { ContactStyles as Styles } from './styles';
 import { Displayment } from '../assets/functions';
 
+const __URL = 'http://localhost:9999';
+
 export default function Contact() {
   const [styles, setStyles] = Styles();
+  const mailLoading = useRef();
+  const [show, setShow] = useState(false);
+  const [send, setSend] = useState(false);
 
   useEffect(() => {
     setStyles({
@@ -28,11 +33,6 @@ export default function Contact() {
   }, []);
 
   function MyForm() {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     const refs = {
       name: useRef(),
       phone: useRef(),
@@ -42,17 +42,50 @@ export default function Contact() {
     };
 
     function handleSubmit() {
-      if (
-        !refs.name.current.value ||
-        !refs.phone.current.value ||
-        !refs.mail.current.value ||
-        !refs.subject.current.value ||
-        !refs.message.current.value
-      ) {
-        handleShow();
-      } else {
-        window.location.href = `mailto:mkbspaw@gmail.com?subject=${refs.subject.current.value}&body=Imię i nazwisko: ${refs.name.current.value}%0AE-mail: ${refs.mail.current.value}%0ANumer telefonu: ${refs.phone.current.value}%0A%0A${refs.message.current.value}`;
+      let allFiled = true;
+
+      for (const val in refs) {
+        if (!refs[val].current.value) {
+          allFiled = false;
+        }
       }
+
+      if (!allFiled) {
+        for (const val in refs) {
+          if (!refs[val].current.value) {
+            refs[val].current.style.border = '1px solid red';
+          }
+        }
+      } else {
+        setShow(true);
+
+        fetch(`${__URL}/api/mail.php`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form'
+          },
+          body: JSON.stringify({
+            name: refs.name.current.value,
+            phone: refs.phone.current.value,
+            mail: refs.mail.current.value,
+            subject: refs.subject.current.value,
+            message: refs.message.current.value
+          })
+        })
+          .then(() => {
+            setSend(true);
+            setTimeout(() => {
+              setShow(false);
+              setSend(false);
+            }, 1500);
+          })
+          .catch(() => setShow(false));
+      }
+    }
+
+    function removeError(e) {
+      e.target.style.border = '';
     }
 
     return (
@@ -64,6 +97,7 @@ export default function Contact() {
                 ref={refs.name}
                 style={styles.control}
                 placeholder='Imię i nazwisko'
+                onClick={removeError}
               />
             </Col>
             <Col>
@@ -71,6 +105,7 @@ export default function Contact() {
                 ref={refs.phone}
                 style={styles.control}
                 placeholder='Numer telefonu'
+                onClick={removeError}
               />
             </Col>
             <Col>
@@ -78,6 +113,7 @@ export default function Contact() {
                 ref={refs.mail}
                 style={styles.control}
                 placeholder='E-mail'
+                onClick={removeError}
               />
             </Col>
           </Form.Row>
@@ -87,6 +123,7 @@ export default function Contact() {
                 ref={refs.subject}
                 style={styles.message}
                 placeholder='Temat wiadomości'
+                onClick={removeError}
               />
               <Form.Control
                 ref={refs.message}
@@ -94,6 +131,7 @@ export default function Contact() {
                 as='textarea'
                 row='3'
                 placeholder='Wiadomość..'
+                onClick={removeError}
               />
             </Col>
           </Form.Row>
@@ -101,12 +139,6 @@ export default function Contact() {
             <Button onClick={handleSubmit}>Wyślij wiadomość</Button>
           </Form.Row>
         </Form>
-
-        <Modal centered show={show} onHide={handleClose}>
-          <Modal.Body style={{ textAlign: 'center' }}>
-            Przed wysłaniem wiadomości uzupełnij wszystkie dane!
-          </Modal.Body>
-        </Modal>
       </Col>
     );
   }
@@ -156,6 +188,30 @@ export default function Contact() {
         style={styles.map}
         allowFullScreen=''
       ></iframe>
+      <div
+        ref={mailLoading}
+        style={{
+          position: 'fixed',
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: '2.5rem',
+          display: show ? 'flex' : 'none',
+          top: 0,
+          left: 0,
+          height: '100vh',
+          width: '100vw',
+          background: 'rgba(0, 0, 0, 0.3)',
+          zIndex: 9999999999999
+        }}
+      >
+        {send ? (
+          <p>Wiadomość została wysłana</p>
+        ) : (
+          <div className='fa-3x' style={{ fontSize: '2.5rem' }}>
+            Wysyłanie <i className='fas fa-circle-notch fa-spin'></i>
+          </div>
+        )}
+      </div>
     </Container>
   );
 }

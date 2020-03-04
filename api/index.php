@@ -3,7 +3,7 @@
     header("Content-Type: application/json");
     header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
 
-    $dir = "../projects"; //path
+    $dir = "../img"; //path
 
     $list = array(); //main array
 
