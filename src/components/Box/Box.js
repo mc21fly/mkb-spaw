@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-import { BoxStyles as Styles } from './styles';
+import Styles from './Box.styles';
 
 export default function Box(props) {
   const [styles] = Styles(props);

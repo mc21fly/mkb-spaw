@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { FooterStyles as Styles } from './styles';
+import Styles from './Footer.styles';
 
 const currentYear = new Date().getFullYear();
 
@@ -13,7 +13,7 @@ export default function Footer() {
         <div>Copyright © {currentYear}</div>
         <div>
           project and development{' '}
-          <a style={{ marginLeft: 0 }} href="http://github.com/mc21fly">
+          <a style={{ marginLeft: 0 }} href='http://github.com/mc21fly'>
             mcfly
           </a>
         </div>

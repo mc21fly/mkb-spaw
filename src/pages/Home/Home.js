@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { Article, Box } from '../components';
+import { Article, Box } from '../../components';
 
-import { HomeStyles as Styles } from './styles';
+import Styles from './Home.styles';
 
-import { Welder1, Welder2 } from '../assets/img';
+import { Welder1, Welder2 } from '../../assets/img';
 
 export default function Home() {
-  const [styles] = Styles();
+  const [styles, setStyles] = Styles();
+
+  useEffect(() => {
+    setStyles({
+      ...styles,
+      header: {
+        ...styles.header,
+        transform: 'translateY(0%)',
+        opacity: 1
+      }
+    });
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <Container fluid style={styles.root}>
-      <Article right image={Welder1} title="Kim jesteśmy?">
+      <Container>
+        <p style={styles.header}>Poznajmy się!</p>
+      </Container>
+
+      <Article right image={Welder1} title='Kim jesteśmy?'>
         Nasza firma zajmuje się spawaniem konstrukcji stalowych. Świadczymy
         kompleksowe usługi ślusarsko-spawalnicze. Spawamy metodami <b>MAG</b>{' '}
         oraz <b>TIG</b>. Jesteśmy otwarci na zlecenia według projektów klienta
@@ -19,7 +35,7 @@ export default function Home() {
         dużym firmom, oraz obsługujemy osoby prywatne.
       </Article>
 
-      <Article dark center title="Czym się zajmujemy?">
+      <Article dark center title='Czym się zajmujemy?'>
         <Row>
           <Box>
             Produkujemy meble loftowe oraz industrialne ze spawanymi elementami
@@ -40,7 +56,7 @@ export default function Home() {
         </Row>
       </Article>
 
-      <Article image={Welder2} title="Co nas wyróżnia?">
+      <Article image={Welder2} title='Co nas wyróżnia?'>
         Posiadamy doświadczenie w branży spożywczej oraz farmaceutycznej, nabyte
         podczas pracy m.in. w browarach, u producentów soków czy też leków.
         Zarówno w Polsce jak i na terenie Europy.

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Container, Col, Row, Form, Button } from 'react-bootstrap';
-import { ContactStyles as Styles } from './styles';
-import { Displayment } from '../assets/functions';
+import Styles from './Contact.styles';
+import { Displayment } from '../../assets/functions';
 
-const __URL = 'http://localhost:9999';
+const __URL = 'https://www.mkb-spaw.pl';
 
 export default function Contact() {
   const [styles, setStyles] = Styles();
@@ -97,7 +97,7 @@ export default function Contact() {
                 ref={refs.name}
                 style={styles.control}
                 placeholder='Imię i nazwisko'
-                onClick={removeError}
+                onFocus={removeError}
               />
             </Col>
             <Col>
@@ -105,7 +105,7 @@ export default function Contact() {
                 ref={refs.phone}
                 style={styles.control}
                 placeholder='Numer telefonu'
-                onClick={removeError}
+                onFocus={removeError}
               />
             </Col>
             <Col>
@@ -113,7 +113,7 @@ export default function Contact() {
                 ref={refs.mail}
                 style={styles.control}
                 placeholder='E-mail'
-                onClick={removeError}
+                onFocus={removeError}
               />
             </Col>
           </Form.Row>
@@ -123,7 +123,7 @@ export default function Contact() {
                 ref={refs.subject}
                 style={styles.message}
                 placeholder='Temat wiadomości'
-                onClick={removeError}
+                onFocus={removeError}
               />
               <Form.Control
                 ref={refs.message}
@@ -131,7 +131,7 @@ export default function Contact() {
                 as='textarea'
                 row='3'
                 placeholder='Wiadomość..'
-                onClick={removeError}
+                onFocus={removeError}
               />
             </Col>
           </Form.Row>

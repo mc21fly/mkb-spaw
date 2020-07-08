@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap'; // IMPORT REACT COMPONENTS
+import { Container, Row, Col } from 'react-bootstrap';
 
-import { Menu, HamburgerMenu, Footer } from './components'; // IMPORT APP COMPONENTS
-import { Home, Projects, Contact } from './pages'; // IMPORT APP PAGES
-import { Displayment } from './assets/functions'; // IMPORT APP FUNCTIONS
+import { Menu, HamburgerMenu, Footer } from './components';
+import { Home, Projects, Contact } from './pages';
+import { Displayment } from './assets/functions';
 
-import { AppStyles as Styles } from './pages/styles'; // IMPORT COMPONENT STYLE
+import Styles from './App.styles';
 
 import { Logo } from './assets/img';
 

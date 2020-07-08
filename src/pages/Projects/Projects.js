@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Image, Col, Modal } from 'react-bootstrap';
 
-import { ProjectsStyles as Styles } from './styles';
+import Styles from './Projects.styles';
 
-const __URL = 'http://localhost:9999';
+const __URL = 'https://www.mkb-spaw.pl';
 
 export default function Projects() {
   const [styles, setStyles] = Styles();

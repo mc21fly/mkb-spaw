@@ -26,6 +26,8 @@ export default function Styles() {
       flexBasis: '24%',
       marginBottom: '10px',
       maxHeight: 250,
+      height: 'auto',
+      width: 'auto',
       objectFit: 'cover',
       cursor: 'pointer'
     }

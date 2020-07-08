@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Alignment } from '../assets/functions';
-import { ArticleStyles as Styles } from './styles';
+import { Alignment } from '../../assets/functions';
+import Styles from './Article.styles';
 
 export default function Article(props) {
   const alignment = Alignment(props);
@@ -36,7 +36,13 @@ export default function Article(props) {
     return (
       <Col style={styles.image}>
         <img
-          style={{ objectFit: 'cover' }}
+          style={{
+            objectFit: 'cover',
+            height: 'auto',
+            width: 'auto',
+            maxHeight: 350,
+            maxWidth: 300
+          }}
           src={props.image}
           alt={props.image}
         />
