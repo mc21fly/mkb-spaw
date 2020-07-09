@@ -1,5 +1,6 @@
 {
   "name": "mkb-spaw",
+  "homepage": "https://www.mkb-spaw.pl",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

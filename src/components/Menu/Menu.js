@@ -31,8 +31,8 @@ export default function Menu() {
       </a>
       <a style={styles.root.ml} href='https://mkb-spaw.olx.pl/'>
         <img
+          className='menu-img'
           src='https://static.olx.pl/static/olxpl/naspersclassifieds-regional/olxeu-atlas-web/static/img/redesign/favicon.ico?v=2'
-          style={{ width: 16, height: 16 }}
           alt='OLX'
         />
       </a>
