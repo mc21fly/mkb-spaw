@@ -94,3 +94,15 @@ a {
         filter: grayscale(100%) invert(1) brightness(1.75);
     }
 }
+
+.menu-img_hb {
+    margin-left: 30px;
+    margin-bottom: 6px;
+    width: 24px;
+    height: 24px;
+    filter: grayscale(100%) invert(1) brightness(1.3);
+
+    &:hover {
+        filter: grayscale(100%) invert(1) brightness(1.75);
+    }
+}

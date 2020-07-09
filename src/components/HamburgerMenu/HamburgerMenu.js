@@ -9,7 +9,7 @@ export default function HamburgerMenu() {
   const buttons = {
     home: useRef(),
     projects: useRef(),
-    contact: useRef()
+    contact: useRef(),
   };
 
   const options = useRef();
@@ -30,7 +30,7 @@ export default function HamburgerMenu() {
       <i
         onClick={changeDisplay}
         className='fas fa-bars'
-        style={{ fontSize: '40px' }}
+        style={{ fontSize: '40px', marginRight: 15 }}
       ></i>
 
       <div ref={options} className='hamburgerMenuOptions'>
@@ -58,6 +58,13 @@ export default function HamburgerMenu() {
               </a>
               <a style={{ marginLeft: 30 }} href='https://m.me/647334855612910'>
                 <i className='fab fa-facebook-messenger'></i>
+              </a>
+              <a style={styles.root.ml} href='https://mkb-spaw.olx.pl/'>
+                <img
+                  className='menu-img_hb'
+                  src='https://static.olx.pl/static/olxpl/naspersclassifieds-regional/olxeu-atlas-web/static/img/redesign/favicon.ico?v=2'
+                  alt='OLX'
+                />
               </a>
             </div>
           </Row>
