@@ -7,7 +7,7 @@
     $json = file_get_contents('php://input');
     $data = json_decode($json);
 
-    $to = "mkb-spaw@gmail.com";
+    $to = "mkbspaw@gmail.com";
     $subject = "$data->subject - $data->name" ;
     $txt = "$data->message" . "\r\n" . "Telefon: " . $data->phone;
 
